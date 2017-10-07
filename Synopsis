@@ -1,54 +1,59 @@
-\documentclass[14pt]{extarticle}
+\documentclass[12pt]{article}
 \usepackage[margin = 1in]{geometry}
 \usepackage{graphicx}
+\usepackage{caption}
 \begin{document}
 \begin{Large}
 \begin{center}
-\textbf{PROJECT SYNOPSIS}
+\textbf{DEFECT DETECTION USING MACHINE VISION}
 \end{center}
 \end{Large}
 
 \section{Synopsis}
 \subsection{Introduction}
-\quad 
-The dictionary defines automation as “The technique of making an apparatus, a process, or a system operate automatically.” As Engineers, We have defined it to be "The creation and application of technology to monitor and control the production and delivery of products and services." Automation crosses all functions within industry from installation, integration, and maintenance to design, procurement, and management. Automation even reaches into the marketing and sales functions of these industries. Almost all industries implement automation to a certain extent to optimize their business.
-\quad In the past few years, the key word 'Machine Vision' has been trending. Since the world is moving towards dynamism, information is now processed real-time, instead of storing them in servers and 'Machine Vision' illustrates the significance of real-time processes. The Global Machine Vision Systems Market is  forecasted  reach USD 18.35 billion by 2020, at a CAGR of 11.8\% during the forecast period from 2015 to 2020.The global machine vision systems market is segmented on the basis of components into camera, processor, software, and others. On the basis of end users, the market has been segmented into automobile, semiconductor, healthcare, food and beverage, consumer electronics, and others. On the basis of geography, the market has been segmented into North America (United States, Canada), Europe (United Kingdom, Germany, France, others), Asia-Pacific (China, India, Australia, others), and the Rest of the World.
+\quad Quality checking is an integral step in the production of any product. This involves the maintenance of a desired level of quality in a service or product, by means of attention to every stage of the process of delivery or production.  In manufacturing, quality control is a process that ensures customers receive products free from defects and meet their needs and demands. When done the wrong way, it can put consumers at risk. For example, the recent defect found in Takata airbags resulted in the biggest automotive recall in history$^{[1]}$. Quality makes an important contribution to your company’s reputation, particularly with the growth of social media. Positive reviews and comments can reinforce your own marketing efforts, but also quality problems can have a damaging effect on the companies reputation.\\
+\null{\quad}Quality control can help to reduce your production and product support costs. A quality control system helps to lower levels of waste and rework, cutting costs and improving productivity and production efficiency. Delivering quality products can also reduce the number of returns you must handle or the cost of repairing or servicing products in the field. However implementing these techniques using existing technology can be obstructive, ineffective and expensive.\\
 
-
-
-
+{\quad}Thus, our aim is to create a low-cost and an efficient prototype system that is able to detect any defects in an object by using image processing techniques and also estimate the size of such defects.
 
 \subsection{Motivation:}
-{\quad}In most of the manufacturing industries, it is common to obtain a few defective products among the perfect ones. On a large scale, it is quite complex to accurately detect a defective product.\\
+In Mechanics, the need to join pieces like plates, sections, and bars are very common. Any assembly, however simple it may be, requires the union of parts together, but the mechanical parts to be joined require the proper elements of marriage that are named fasteners.
+Most commonly, the fasteners used in mechanics are: rivets, pins, bolts, screws, nuts, washers, and braces.As automotive, trucking and heavy equipment manufacturers look to reduce weight, materials such as iron and steel have made way for lighter substances like aluminium and other alloys.\\
+{\quad} Manufacturers must be able to provide fasteners with zero defects as fasteners are the rudimentary blocks of the entire production system. Conventional techniques include cold heading and thread rolling are not entirely efficient. Hence, Manufacturers have long relied on sorting systems to remove defective fasteners before they enter production.\\
+{\quad} Modern high volume auto feed systems and pass-through parts require fasteners to have even more integrity . To maximum production uptime and critical part safety manufactures expect fasteners to have zero defects.\\
+Hence there is a need for adopting an automated inspection systems for a variety of fasteners ranging from bolts to screws to washers
+ 
 
-{\quad}Defects in manufacturing occur when a product is improperly manufactured and departs from its intended design. One of the common defects in a product is dimensional inaccuracy. Conventionally, there are two ways to detect such inaccuracies. Conventional methods employed is usually either very expensive, or very slow, or sometimes a combination of both.
-\\Hence, There is a need for detecting these defects in a cost-effective and efficient manner in early stages of manufacturing.
 
 
 \subsection{Problem Statement:}
-{\quad}An automated system is to be assembled which can detect and label the dimensional defects of a given object. Such a system must  perform with a high degree of accuracy and also be cost-effective. The designed system must also be easy to operate so that it is deploy-able in a production line with relative ease.
+{\quad} A cost effective, automated 3D inspection system needs to be built using machine vision and image processing techniques that can accurately inspect fasteners and detect any defects or variations from the required characteristics.\\
+\quad Such a system must automate conventional inspection systems and provide a better alternative to manual inspections.
 
 \subsection{Objective:}
-{\quad}This work presents a new, real-time, highly automated tool for defect detection based on the combination of statistical and Image Processing approach.The specific goals of this investigation are to develop an efficient non-intrusive, online dimensional defect detection. These are achieved by creating a machine-vision system able to perform real time acquisition,  image processing and classification. The automatic inspection system will allow the detection and classification of the most frequently occurring dimensional defects in the manufactured products while storing and displaying the possible solutions to the user.
-\newpage
+The designed system must be able to measure the dimensions of standard M16 nuts and bolts. The dimensions include length, diameter and thread pitch.\\
+{\quad} The system must be able to detect and track burrs and thread damage present in the nuts and bolts.
 
 \subsection{Block Diagram:}
-
 \begin{figure}[h]
 \centering
-\includegraphics[scale=1]{bd.jpg}
+\includegraphics[scale=.8]{bd.jpg}
 \caption{Basic Block Diagram}
 \end{figure}
 
-A basic block diagram of the proposed project is given above. The first step is to acquire the image of the object. Since the object can have defects along any axis, we will take multiple images of the object from different angles. These bunch of images are sent to a processor, which will use image processing techniques to enhance and find the defects in the object by comparing it with a previously saved template of the object. The defects, if found, are then stored and displayed to the user in the last step. 
+A basic block diagram of the proposed project is given above.\\
+\null{\quad}The first step is to acquire the image of the object. The image is captured using a camera with the help of a line LASER(3-D triangulation). Since the object can have defects along any axis, we will take multiple images of the object from different angles. Some images are also taken from the top view.\\
+\null{\quad}The set of images thus obtained undergo pre-processing, in which the background, noise and other unnecessary parameters are removed from the images.\\
+\null{\quad}The pre-processed images undergo image processing using spatial or transform filters. In this stage, the images are compared with another set of images which contains the required result. The difference is detected as a defect. Depending on the type of defect, the object is classified as pass/rework/fail. The size of the defect is also estimated from the given set of images.\\
+\null{\quad}Finally the detected defects are marked on the images showing where it is present for further processing.
 
 \subsection{Project Outcome:}
 {\quad}The designed automated system will be able to take pictures of the object in all the 3 dimensions using cameras and process the images using image processing techniques. The system will compare the processed image with an initially stored reference image of the same and detect abnormalities or flaws, if any. Finally it will display the area or the part where defect is present and suggest an alternative method for resolving the flaw or problem. 
 
-\subsection{Application:}
+\subsection{Applications:}
 \begin{itemize}
 \item{
-Although the system is limited to only manufacturing industries, it plays a vital role in quality control of the goods manufactured.
+The proposed system can be used to check defects in manufacturing industries, thus playing a vital role in quality control of the goods manufactured.
 }
 \item{
 If such a system is employed in early stages of production, it can be used to detect the faulty goods beforehand and have a better chance of rectifying the errors, thus reducing wastage.
@@ -63,59 +68,76 @@ It can be used to check the dimensions of an unknown object.
 \end{itemize}
 \newpage
 \section{Literature Survey:}
+{\quad}Machine vision (MV) is the technology and methods used to provide imaging-based automatic inspection and analysis for such applications as automatic inspection, process control, and robot guidance, usually in industry. The main task of machine vision systems is providing computer understandable descriptions of objects from either single image or whole array of images. One such area of application  is in automated visual product inspection. An automated visual inspection system must discover and classify possible dimensional defects from product images and should be fairly quick and robust. Such an automated system can be assembled with the digital image processing at its core in order to detect defects in large scale manufacturing industries.\\
+The manufacturing processes involved in the production of Bolts,Screws and Fasteners include Heat Treatment, Surface Finishing, Thread Forming and Rolling. After the products are subjected to these processes, they are subjected to inspection which involves strength test, torque test and dimensional inspection. At present, the dimensional inspection involves manually testing individual product and hypothesizing whether the subjected product is of a uniform dimension.
 
-\subsection{Quality Checking}
 
-\quad Quality Checking is an integral step in the production of any product. This ensures the maintenance of a desired level of quality in a service or product, especially by means of attention to every stage of the process of delivery or production.  In manufacturing, quality control is a process that ensures customers receive products free from defects and meet their needs. When done the wrong way, it can put consumers at risk. For example, the recent defect found in Takata airbags resulted in the biggest automotive recall in history. Quality makes an important contribution to your company’s reputation, particularly with the growth of social media. Positive reviews and comments can reinforce your own marketing efforts, but quality problems can have a damaging effect on the companies reputation 
- \quad 	Quality control can help to reduce your production and product support costs. A quality control system helps to lower levels of waste and rework, cutting costs and improving productivity and production efficiency. Delivering quality products can also reduce the number of returns you must handle or the cost of repairing or servicing products in the field. However implementing these techniques using existing technology can be obstructive, ineffective and expensive.
-  \quad Early detection of error reduces damage and manufacturing cost of products.  In the case of manufacturing of metals, there exists different metal
-defects and the larger defects are more critical then the small ones .Defects greatly reduces the speed of
-production which in turn affects the market value of products. 
-	
-\subsection{Quality Check Process}
-There are different processes involved in Quality Checking. These processes are used individually or can be interoperable. Some of them are
-\begin{enumerate}
+{\quad}Machine vision system usually finds applications in PCB manufacturing industry since PCBs can be approximated as a 2-D plane. Thus only one image is sufficient to describe a PCB. A study, by Suhasini A.,Sonal D. Kalro, Prathiksha B. G., Meghashree B. S., Phaneendra H. D.$^{[2]}$, utilized a non-contact reference based image processing approach for defect detection and classification and simple image processing algorithm (concerned with arithmetic and logical operation between images where pixel by pixel transformation was applied) for locating the defects on PCB board. A template of defected test PCB image involved many stages which were gray scale image conversion, thresholding, segmentation on basis of different  intensities and were compared with the defect-free PCB images using image subtraction and other procedures. Discrepancies between the images were considered as defects and classified based on similarities and area of occurrence.\\
 
-\item{Manual Inspections:}
-Manual Inspections of end products are not an effective solution as it greatly slow down the production and add to the cost of products. Reasons of surface defect include degraded raw material or rolling process manufacturing. Larger surface defects include crack, cavities, porosity, misruns, incomplete fusion, fins etc.Smaller defects include pits, bumps, holes, scratches that remain unnoticed until operation is incomplete. This type of inspection makes the overall operation cycle inefficient and slow.
-There is a system that creates a model for inspection after being trained on a number of 'good' and 'bad' parts.
-\item{Automation:}
-The advent of technology developed in the past few decades have optimised the Quality Check Process, as there is a shift from Manual inspection to Automatic inspection. 
-The conventional types of technology being employed in the industries can be summarized below:
-\begin{itemize}
-\item{X-ray flaw detection:}
-\quad X-ray flaw detection is based on the absorption of X rays, which depends on the density of the medium and the atomic number of the elements that form the material of the medium. The presence of such defects as cracks, blisters, or inclusions of foreign material leads to a situation in which the rays passing through the material is attenuated to a varying degree. By recording the distribution of the intensity of the transient rays it is possible to determine the presence and location of various discontinuities in the material.
-\begin{figure}[h]
-\includegraphics[scale=1]{fg2.jpg}
-\centering
-\caption{Diagram of X-raying: (1) source of X radiation, (2) X-ray beam, (3) part being tested, (4) internal defect in the part, (5) X-ray image behind the part (invisible to the eye), (6) X-ray image recorder}
-\end{figure}
+{\quad}Heriansyah$^{[3]}$ proposed a better technique, which used referential pixel based approach where the PCB could be formed into three groups: the defects on the foreground, on the background and on both. The LVQ neural network had been selected to classify the defects. The designed patterns were trained and tested using the neural network. For the neural network implementation, 2 groups of defects were used for training(i.e., foreground and background). For performance comparison, a pixel  based approach developed which was used to classify seven defects(short, missing hole, pinhole, open, nosebite, spur and etching problem). The stages involved were segmentation, windowing(reference image and detected defects), defects detection, pattern assignment, normalization and classification. All these processes were offline hence did not affect the overall processing time.\\
 
-\item{Gamma-ray flaw detection:}
-\quad Gamma-ray flaw detection has the same physical principles as X-ray flaw detection, but the radiation of gamma rays emitted by artificial radioactive isotopes of various metals (such as cobalt, iridium, or europium) is used. A radiant energy of several dozen kev to 1-2 MeV is used to irradiate thick parts. This method has significant advantages over X-ray flaw detection: the equipment is comparatively simple and the radiation source is compact, making it possible to examine hard-to-reach parts of products. Moreover, this method can be used when X-ray flaw detection would be difficult (for example, in field tests). In working with sources of X rays and gamma radiation, biological protection must be provided.
-\item{Radiographic inspection:}
-\quad Radiographic inspection is based on the penetrating properties of radio waves in the centimeter and millimeter bands (microwaves) and makes it possible to detect flaws primarily on the surface of products that are made of nonmetallic materials. This method is used to find defects in sheet steel, steel bars, and steel wire during their manufacture and to measure their thickness or diameter, the thickness of dielectric coatings, and so on. Microwaves from a generator operating in continuous or pulse mode penetrate the product through electromagnetic horns and, after passing through an amplifier, are recorded by a receiver.
+{\quad}Lins and Givigi$^{[4]}$ had developed a system based machine vision concepts with the goal to automate the crack measurement process. In their method, they have used only a single camera for the processing of the sequence of the images for the crack dimension estimation. The crack model algorithm HSB and RSV were used by which the sequences of the images were subjected to crack detection algorithm in order to detect the crack. The proposed algorithm receives images as and outputs a new image with red particles along the detected crack. The pixel positions of the particles were stored in a vector and passed along to the crack measurement algorithm. With the pixel positions, the algorithm estimates the number of pixels in a cross section and outputs the crack dimension. Li et al$^{[5]}$ have incorporated a new approach for detecting the crack in the defects with the dark color and the low contrast using the fast discrete curvelet waveform and texture analysis. They have initially decomposed and reconstructed the original image using the FDCT algorithm. Then the thresholds of the decomposition coefficients were calculated by the texture feature measurements, from which the surface textures in the images were eliminated. Finally, by extracting the contours from the reconstructed images, the expected image without texture but with crack defect contours was obtained.\\
 
-\item{Infrared flaw detection}
-\quad Infrared flaw detection uses infrared (heat) rays to detect inclusions that are opaque to visible light. A so-called infrared image of the defect is produced in the transient, reflected, or intrinsic radiation of the product under investigation. An infrared radiation flux is passed through the product and its distribution is recorded by a heat-sensitive receiver. Inhomogeneity of the structure of materials can also be investigated by the method of ultraviolet flaw detection.
-\item{Ultrasonic flaw detection}
-Ultrasonic flaw detection is based on the use of elastic oscillations, mainly in the ultrasonic frequency range. Disruption of the continuity or homogeneity of the medium affects the propagation of the elastic waves in the article or the conditions of oscillation of the article. The main ultrasonic methods are the echo, shadow, resonance, and velocimetric methods (ultrasonic methods proper) and the impedance method and method of free oscillations (acoustic methods).
+{\quad}But these systems works well for a 2-D view since we are taking an image or a set of images. These methods fail to work for 3-D objects. M Jonathan Wu Etal$^{[6]}$ designed a 3-D sensing system applying artificial intelligence methodology for quantity assurance in automatic manufacturing processes. Using a single 2-D CCD camera, laser structured light and fuzzy techniques for rule based decision-making, it was possible to successfully interpret 3-D view. The surface environment information was converted into the orientation,curvature and depth of the shape to incorporate into symbolic 3-D object oriented information base and reasoning algorithm.\\
+
+
+\subsection{Mathematical Analysis:}
+{\quad}In order for a object to be scanned so that the defects can be detected, a simple 3-D triangulation setup is created using a line LASER and a camera.\\
+
+{\quad}The image above shows a very simple triangulation setup using a camera and a line LASER. The LASER diode is positioned such that it creates a triangle with the view direction of the camera. As you can see from the image, the LASER line projects on the object and intersects the view direction of the camera exactly at the axis of rotation of the object. The angle at the intersection of the LASER line and the view direction (THETA) provides us with the first tool for extracting depth related information from the image captured by the camera.
 \begin{figure}
-\includegraphics[scale=1]{fg3.jpg}
+\includegraphics[scale=1]{lasercamera.jpg}
+\caption{A simple triangulation setup consisting of a Line LASER diode projecting a line on the 3D object}
+\end{figure}\\
+
+{\quad}The length of X and Y can be obtained from the image itself.
+$$X=N_v * X_s$$
+$$Y=Scanline * Y_s$$
+where,\\
+$N_v$ is the number of pixels from view direction\\
+$X_s$ is X scaling factor\\
+and,$Y_s$ is Y scaling factor\\
+\begin{figure}[h]
 \centering
-\caption{ Block diagram of an ultrasonic echo defectoscope: (1) electrical pulse generator, (2) piezoelectric converter (selector head), (3) reception-amplification circuit, (4) timer, (5) scanning generator, (6) cathode tube. / is the initial signal, 8 is the bottom re-turn, and DF is a blip from the defect.}
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[scale=.5]{triangle.jpg}
+  \captionof{figure}{Top view of the triangulation setup}
+  %\label{fig:test1}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[scale=.7]{yline.jpg}
+  \captionof{figure}{View from the camera}
+  %\label{fig:test2}
+\end{minipage}
 \end{figure}
-\end{itemize}
-\end{enumerate}
- These processes are present in the industry and are an integral part of their production cycle. However, these technologies cannot be implemented in start ups, low budget companies as the cost of setup and maintenance is very high
- 
-\subsection{Machine Vision}  
-Machine vision (MV) is the technology and methods used to provide imaging-based automatic inspection and analysis for such applications as automatic inspection, process control, and robot guidance, usually in industry. The main task of machine vision systems is providing computer understandable descriptions of objects from either single image or whole array of images. One such area of application  is in automated visual product inspection. An automated visual inspection system must discover and classify possible defects from product images and should be fairly quick and robust. These requirements are needed if automated systems are to replace human inspection which has many drawbacks, mainly caused by tiredness and slowness (modern production methods usually facilitate productions speeds humans can't cope with). Such an automated system can be assembled with the digital image processing at its core in order to detect dimensional  defects in large scale manufacturing industries
+{\quad}Since we know the angle(THETA), we can calculate the depth of the image or the Z component as,
+$$Z=\frac{X}{\tan(THETA)}$$
+$$D=\frac{X}{\sin(THETA)}$$
 
-{\quad}Machine Vision involves Digital Image Processing which focuses on developing a computer system that is able to perform processing on an image. The input of that system is a digital image and the system process that image using efficient algorithms, and gives an image as an output. In DIP,  Pixel subtraction is one of the methods where the digital numeric value of one pixel or whole image is subtracted from another image. This is primarily done for one of two reasons – leveling uneven sections of an image such as half an image having a shadow on it, or detecting changes between two images.[1] This detection of changes can be used to tell if something  in the image varies and this is the basis for defect detection.
+{\quad}Let the set of images of the object on which the LASER is incident be defined as,\\
+\begin{center}
+$f_i(x,y),{\quad}0{\leq}i<N${\quad}(N is the number of images taken)
+\end{center}
 
+{\quad}Let the set of images of the object which does not have the LASER incident on it be defined as,\\
+\begin{center}
+$g_i(x,y),{\quad}0{\leq}i<N$
+\end{center}
 
+{\quad} Initially the backgrounds of all the images are removed by subtracting the background image from the set of images present. If $b(x,y)$ is an image only containing the background, then,
+$$f'_i(x,y)=f_i(x,y)-b(x,y),{\quad}\forall i\in[0,N)$$
+The images now contain only the object devoid of the background. After removing the background it checks for any defects by comparing $f'_i(x,y)$ with respect to a previously stored images of a perfectly fine, LASER incident object. The comparison is done using subtraction or bit-wise XOR operation,
+$$f_i"(x,y)=f'_i(x,y)-p_i(x,y),{\quad}\forall i\in[0,N)$$
+or,
+$$f_i"(x,y)=f'_i(x,y){\wedge}p_i(x,y),{\quad}\forall i\in[0,N)$$
+where, $p_i(x,y)$ is a set of images of an object without any defects, stored within the processor.\\
 
+{\quad}The resultant image $f"_i(x,y)$ contains a contour which basically is the deviation from the required value. This represents the defect present in the object. The size of the defect is later estimated by comparing all such images which do not match with $p_i(x,y)$. If $f"_i(x,y)$ does not have any contours, then it can be classified as an object with no defects.\\
+
+{\quad}Finally, the contour is superimposed on the corresponding $g_i(x,y)$ to mark where the defect is present. Hence the set of output images is,
+$$h_i(x,y)=f_i"(x,y)\vert g_i(x,y)$$
 
 \subsection{Software Requirements:}
 \subsubsection{OpenCV:}
@@ -146,16 +168,20 @@ Additionally it adds wireless LAN and Bluetooth connectivity making it the ideal
 
 \section{References}
 \begin{enumerate}
-\item 'AN INVESTIGATION OF IMAGE PROCESSING TECHNIQUES FOR PAINT DEFECT DETECTION USING A MACHINE VISION SYSTEM' Ashish V. Kamat,University of Kentucky, kamat@engr.uky.edu
-\item 'Computer-Vision-Based Fabric Defect Dection: A Survey' Ajay Kumar, IEEE
-\item 'DETECTION AND CLASSIFICATION OF METAL
-DEFECTS USING DIGITAL IMAGE PROCESSING'
-Tiwari Priti Ramesh
-, Yashoda Bisht, Department of Electronics and Communication Engineering,
-Raj Kumar Goel Institute of Technology for Women. Ghaziabad (India)
-\item 
-http://encyclopedia2.thefreedictionary.com/Flaw+Detection
-
+\item{Consumer Reports. (July 14,2017). \emph{Takata Airbag Recall - Everything You Need to Know}, retrieved on September 20,2017.\\
+URL: https://www.consumerreports.org/cro/news/2016/05/everything-you-need-to-know-about-the-takata-air-bag-recall/index.htm}
+\item{
+Suhasini A.,Sonal D. Kalro, Prathiksha B. G., Meghashree B. S., Phaneendra H. D., \emph{PCB Defect Detection Using Image Subtraction Algorithm}, International Journal of Computer Science Trends and Technology (IJCST) – Volume 3 Issue 3, May-June 2015.
+}
+\item{R. Heriansyah and S. A. R. Abu-Bakar(2004), \emph{Defects classification on bare PCB using multiple learning vector quantization neural network paradigm}, International Conference on Computer Graphics, Imaging, and Visualization 2004 (CGIV 2004), pp.50-53.}
+\item{
+Romulo Gonçalves Lins, Sidney N. Givigi, \emph{Automatic crack detection and
+measurement based on image analysis}, IEEE Trans. Instrum. Meas., 65 (3) (2016), pp. 583-590}
+\item{Xueqin Li, Honghai Jiang, Guofu Yin, \emph{Detection of surface crack defects on ferrite magnetic tile}, NDT E Int., 62 (2014), pp. 6-13}
+\item{Q.M. Jonathan Wu, M.F. Ricky Lee and Clarence W. de Silva,
+\emph{Intelligent 3-D Sensing in Automated Manufacturing Processes}, IEEE, pp. 334-339, 2001.}
+\item{Makerzone. (July 12,2016). \emph{Raspberry Pi + MATLAB based 3D Scanner}, retrieved on September 15,2017\\
+URL: https://makerzone.mathworks.com/resources/raspberry-pi-matlab-based-3d-scanner/}
 \end{enumerate}
 
 \end{document}
