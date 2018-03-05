@@ -77,6 +77,31 @@ def find_valley(th_row, th_col):
     return v_row, v_column
 
 
+def glare_noise(p_row,v_row):
+    #start=time.time()
+    p_avg=np.mean(p_row)
+    noisepos_peak=list()
+    for i in range(0,len(p_row)):
+        if(p_row[i]> p_avg+30 or p_row[i]< p_avg-30):
+            noisepos_peak.append(i)
+                
+    peak=np.array(np.delete(p_row,noisepos_peak),np.int16)
+    
+    v_avg=np.mean(v_row)
+    noisepos_valley=list()
+    for i in range(0,len(valley_row)):
+        if(v_row[i]> v_avg+30 or v_row[i]< v_avg-30):
+            noisepos_valley.append(i)
+    
+    valley=np.array(np.delete(v_row,noisepos_valley),np.int16)
+    
+    
+    #stop=time.time()-start
+    #print(stop)
+    
+    return peak,valley
+
+
 def show_peak_valley(img, v_row, v_column, p_row, p_column):
     #cv2.circle(img, (250, 250), 50, (100, 50, 200), -1)
     for i in range(v_row.shape[0]):
@@ -128,13 +153,18 @@ for column in range(binaryImage.shape[1] - 1, top, -1):
         break
 stop = time.time()
 '''
-for column in range(binaryImage.shape[1]):
+rownonzero_pos,colnonzero_pos=binaryImage.nonzero()
+width = max(colnonzero_pos)
+height = max(rownonzero_pos)
 
-    for row in range(binaryImage.shape[0]):
+for column in range(width):
+
+    for row in range(height):
         if binaryImage[row, column] != 0:
             thread_row = np.append(thread_row, row)
             thread_col = np.append(thread_col, column)
             break
+
 
 temp = np.diff(thread_row, 1)
 temp = np.where(temp < -50)
@@ -166,6 +196,8 @@ print("their pos:")
 print(valley_column)
 print("valley diff")
 print(np.diff(valley_column,1)*5.9/1104)
+
+
 show_peak_valley(img, valley_row, valley_column, peak_row, peak_column)
 
 #cv2.imshow('org', redChannel)
