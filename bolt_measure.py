@@ -198,6 +198,8 @@ print("valley diff")
 print(np.diff(valley_column,1)*5.9/1104)
 
 
+peak_row,valley_row=glare_noise(peak_row,valley_row)
+
 show_peak_valley(img, valley_row, valley_column, peak_row, peak_column)
 
 #cv2.imshow('org', redChannel)
