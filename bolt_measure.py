@@ -84,7 +84,7 @@ def glare_noise(p_row,v_row):
     p_avg=np.mean(p_row)
     noisepos_peak=list()
     for i in range(0,len(p_row)):
-        if(p_row[i]> p_avg+30 or p_row[i]< p_avg-30):
+        if(p_row[i]> p_avg+60 or p_row[i]< p_avg-60):
             noisepos_peak.append(i)
                 
     peak=np.array(np.delete(p_row,noisepos_peak),np.int16)
@@ -92,7 +92,7 @@ def glare_noise(p_row,v_row):
     v_avg=np.mean(v_row)
     noisepos_valley=list()
     for i in range(0,len(valley_row)):
-        if(v_row[i]> v_avg+30 or v_row[i]< v_avg-30):
+        if(v_row[i]> v_avg+60 or v_row[i]< v_avg-60):
             noisepos_valley.append(i)
     
     valley=np.array(np.delete(v_row,noisepos_valley),np.int16)
