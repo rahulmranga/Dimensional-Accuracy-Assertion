@@ -4,9 +4,9 @@ import numpy as np
 
 
 def find_peak(th_row, th_col):
-    
+    start=time.time()
     rows = th_row.shape[0]
-    check_width = 20
+    check_width = 30
     p_row = np.array([], np.int16)
     p_column = np.array([], np.int16)
     i = check_width
@@ -36,12 +36,13 @@ def find_peak(th_row, th_col):
         if end_flag:
             break
         i += 1
-    
+    stop=time.time()-start
+    print(stop)
     return p_row, p_column
 
 
 def find_valley(th_row, th_col):
-    
+    start=time.time()
     rows = th_row.shape[0]
     check_width = 30
     v_row = np.array([], np.int16)
@@ -73,12 +74,13 @@ def find_valley(th_row, th_col):
         if end_flag:
             break
         i += 1
-    
+    stop=time.time()-start
+    print(stop)
     return v_row, v_column
 
 
 def glare_noise(p_row,v_row):
-    #start=time.time()
+    start=time.time()
     p_avg=np.mean(p_row)
     noisepos_peak=list()
     for i in range(0,len(p_row)):
@@ -96,8 +98,8 @@ def glare_noise(p_row,v_row):
     valley=np.array(np.delete(v_row,noisepos_valley),np.int16)
     
     
-    #stop=time.time()-start
-    #print(stop)
+    stop=time.time()-start
+    print(stop)
     
     return peak,valley
 
@@ -113,13 +115,13 @@ def show_peak_valley(img, v_row, v_column, p_row, p_column):
     cv2.imshow("valleysssss", img)
 
 
+start=time.time()
+img = cv2.imread('znap24.jpg')
 
-img = cv2.imread('/home/theabysswalker/Documents/python_files/znap24.jpg')
 
-img = img[400:600, 500:1800]
+#img = img[380:600, 500:1550]
 
 redChannel = img[:, :, 2]
-
 #redChannel = cv2.bilateralFilter(redChannel, 10, 100, 100)
 
 retval,binaryImage = cv2.threshold(redChannel, 80, 255, cv2.THRESH_BINARY+cv2.THRESH_OTSU)
@@ -130,8 +132,7 @@ top=0
 bottom=0
 #print(binaryImage.shape[0])
 #print(binaryImage.shape[1])
-'''start = time.time()
-
+'''
 for column in range(1, binaryImage.shape[1]):
     top_flag = False
     for row in range(1, binaryImage.shape[0]):
@@ -157,20 +158,25 @@ rownonzero_pos,colnonzero_pos=binaryImage.nonzero()
 width = max(colnonzero_pos)
 height = max(rownonzero_pos)
 
-for column in range(width):
+mini_col=min(colnonzero_pos)-50
+mini_row=min(rownonzero_pos)-50
 
-    for row in range(height):
+
+if(mini_row<0):mini_row=0
+if(mini_col<0):mini_col=0
+
+for column in range(mini_col,width,1):
+
+    for row in range(mini_row,height,2):
         if binaryImage[row, column] != 0:
             thread_row = np.append(thread_row, row)
             thread_col = np.append(thread_col, column)
             break
 
-
-temp = np.diff(thread_row, 1)
-temp = np.where(temp < -50)
-print("Hello")
-print(temp)
-
+#temp = np.diff(thread_row, 1)
+#temp = np.where(temp < -50)
+#print("Hello")
+#print(temp)
 
 valley_row, valley_column = find_valley(thread_row, thread_col)
 
@@ -197,11 +203,10 @@ print(valley_column)
 print("valley diff")
 print(np.diff(valley_column,1)*5.9/1104)
 
-
 peak_row,valley_row=glare_noise(peak_row,valley_row)
-
+stop=time.time()-start
 show_peak_valley(img, valley_row, valley_column, peak_row, peak_column)
-
+print("total time",stop)
 #cv2.imshow('org', redChannel)
 cv2.imshow('otsu', binaryImage)
 
