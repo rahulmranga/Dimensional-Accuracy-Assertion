@@ -132,51 +132,45 @@ top=0
 bottom=0
 #print(binaryImage.shape[0])
 #print(binaryImage.shape[1])
-'''
-for column in range(1, binaryImage.shape[1]):
-    top_flag = False
-    for row in range(1, binaryImage.shape[0]):
-        if binaryImage[row, column] != 0:
-            top = column
-            break
 
-    if top != 0:
-        break
-
-for column in range(binaryImage.shape[1] - 1, top, -1):
-    
-    for row in range(1, binaryImage.shape[0]):
-        if binaryImage[row, column] != 0:
-            bottom = column;
-            break
-
-    if bottom != 0:
-        break
-stop = time.time()
-'''
 rownonzero_pos,colnonzero_pos=binaryImage.nonzero()
 width = max(colnonzero_pos)
 height = max(rownonzero_pos)
 
 mini_col=min(colnonzero_pos)-50
 mini_row=min(rownonzero_pos)-50
-
+print("min "+str(mini_col) + " " +str(mini_row))
+print("min "+str(width) + " " +str(height))
 
 if(mini_row<0):mini_row=0
 if(mini_col<0):mini_col=0
+stt=time.time()
+for column in range(mini_col,width,1):
+    c = binaryImage[:,column]
+    white = np.where(c!=0)[0]
+    if (white.size != 0):
+        thread_row = np.append(thread_row, int(white[0]))
+        thread_col = np.append(thread_col, column)
 
+print("now " + str(time.time()-stt))
+
+'''            This is your version
+temp_row = np.array([])
+temp_col = np.array([])
+stt=time.time()
 for column in range(mini_col,width,1):
 
     for row in range(mini_row,height,2):
         if binaryImage[row, column] != 0:
-            thread_row = np.append(thread_row, row)
-            thread_col = np.append(thread_col, column)
+            temp_row = np.append(temp_row, row)
+            temp_col = np.append(temp_col, column)
             break
-
+print("bolu's "+str(time.time()-stt))
 #temp = np.diff(thread_row, 1)
 #temp = np.where(temp < -50)
 #print("Hello")
 #print(temp)
+'''
 
 valley_row, valley_column = find_valley(thread_row, thread_col)
 
