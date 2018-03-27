@@ -8,7 +8,7 @@ def find_peak(th_row, th_col):
     rows = th_row.shape[0]
     check_width = 30
     p_row = np.array([], np.int16)
-    p_column = np.arrya([], np.int16)
+    p_column = np.array([], np.int16)
     i = check_width
     end_flag = False
     first_time = True
@@ -201,5 +201,10 @@ def find_peak_valley(thread_row,thread_col,img,binaryImage):
 
 
 
+def image_process(img):
+    redCh,binary_img=image_read(img)
+    thread_row,thread_col=thread_row_column(binary_img)
+    find_peak_valley(thread_row,thread_col,redCh,binary_img)
 
-#image_process('znap24.jpg')
+
+image_process('znap24.jpg')
