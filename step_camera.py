@@ -12,15 +12,14 @@ class Bolt:
 	 	self.bolt_run()
 
 
-	 def bolt_run():
-	 	GPIO.setmode(GPIO.BCM)
- 
-		enable_pin = 18
-		coil_A_1_pin = 4
-		coil_A_2_pin = 17
-		coil_B_1_pin = 23
-		coil_B_2_pin = 24
-		laser_pin = 3
+	def bolt_run():
+		GPIO.setmode(GPIO.BCM)
+		enable_pin=18
+		coil_A_1_pin =4
+		coil_A_2_pin =17
+		coil_B_1_pin =23
+		coil_B_2_pin =24
+		laser_pin =3
  
 		GPIO.setup(enable_pin, GPIO.OUT)
 		GPIO.setup(coil_A_1_pin, GPIO.OUT)
@@ -34,14 +33,14 @@ class Bolt:
 
 		GPIO.output(enable_pin, 1)
   
-		def setStep(w1, w2, w3, w4):
+	def setStep(w1, w2, w3, w4):
     		GPIO.output(coil_A_1_pin, w1)
     		GPIO.output(coil_A_2_pin, w2)
     		GPIO.output(coil_B_1_pin, w3)
     		GPIO.output(coil_B_2_pin, w4)
 
 
-		def fourStepForward(delay):
+	def fourStepForward(delay):
     		for i in range(0, 40):
         		setStep(1, 0, 1, 0)
         		time.sleep(delay)
@@ -51,118 +50,115 @@ class Bolt:
         		time.sleep(delay)
         		setStep(1, 0, 0, 1)
         		time.sleep(delay)
-        def find_peak(th_row, th_col):
-    		#start=time.time()
-    		rows = th_row.shape[0]
-    		check_width = 30
-    		p_row = np.array([], np.int16)
-    		p_column = np.arrya([], np.int16)
-    		i = check_width
-    		end_flag = False
-    		first_time = True
-
-    		while i < rows - check_width:
-        
-        		if th_row[i] <= th_row[i-1] and th_row[i] <= th_row[i+1]:
-            		peak_flag = True
-            
-            		for p in range(1, check_width):
-                		if th_row[i] > th_row[i-p] or th_row[i] > th_row[i+p]:
-                    		peak_flag = False
-                    		break
-
-	            	if peak_flag:
-	                	if first_time:
-	                    	first_time = False
-	                	elif p_row[-1] - th_row[i] > 50:
-	                    	end_flag = True
-	                    	break
-	                	p_row = np.append(p_row, th_row[i])
-    	            	p_column = np.append(p_column, th_col[i])
-        	        	i += check_width - 5
-        
-        		if end_flag:
-            		break
-        		i += 1
-    		#stop=time.time()-start
-    		#print(stop)
-    		return p_row, p_column
-
-
-		def find_valley(th_row, th_col):
-		    #start=time.time()
-		    rows = th_row.shape[0]
-		    check_width = 30
-		    v_row = np.array([], np.int16)
-		    v_column = np.array([], np.int16)
-		    i = check_width
+    
+	def find_peak(th_row, th_col):
+			#start=time.time()
+			rows = th_row.shape[0]
+			check_width = 30
+			p_row = np.array([], np.int16)
+			p_column = np.arrya([], np.int16)
+			i = check_width
 			end_flag = False
-    		first_time = True
-
-    		while i < rows - check_width:
-        
-        		if th_row[i] >= th_row[i-1] and th_row[i] >= th_row[i+1]:
-            		valley_flag = True
+			first_time = True
+			while i < rows - check_width:
+				if th_row[i] <= th_row[i-1] and th_row[i] <= th_row[i+1]:
+					peak_flag = True
             
-            		for p in range(1, check_width):
-                		if th_row[i] < th_row[i-p] or th_row[i] < th_row[i+p]:
-                    		valley_flag = False
-                    		break
+					for p in range(1, check_width):
+						if th_row[i] > th_row[i-p] or th_row[i] > th_row[i+p]:
+							peak_flag = False
+							break
 
-	            	if valley_flag:
-		                if first_time:
-		                    first_time = False
-		                elif (v_row[-1] - th_row[i]) > 50:
-		                        end_flag = True
-		                        break
-		                v_row = np.append(v_row, th_row[i])
-		                v_column = np.append(v_column, th_col[i])	
-		                i += check_width - 5
+					if peak_flag:
+						if first_time:
+							first_time = False
+						elif p_row[-1] - th_row[i] > 50:
+							end_flag = True
+							break
+						p_row = np.append(p_row, th_row[i])
+						p_column = np.append(p_column, th_col[i])
+						i += check_width - 5
         
-        		if end_flag:
-            		break
-        		i += 1
+				if end_flag:
+					break
+					i += 1
+			#stop=time.time()-start
+			#print(stop)
+			return p_row, p_column
+
+
+	def find_valley(th_row, th_col):
+			#start=time.time()
+			rows = th_row.shape[0]
+			check_width = 30
+			v_row = np.array([], np.int16)
+			v_column = np.array([], np.int16)
+			i = check_width
+			end_flag = False
+			first_time = True
+
+			while i < rows - check_width:
+        
+				if th_row[i] >= th_row[i-1] and th_row[i] >= th_row[i+1]:
+					valley_flag = True
+            
+					for p in range(1, check_width):
+						if th_row[i] < th_row[i-p] or th_row[i] < th_row[i+p]:
+							valley_flag = False
+							break
+					if valley_flag:
+						if first_time:
+							first_time = False
+						elif (v_row[-1] - th_row[i]) > 50:
+							end_flag = True
+							break
+						v_row = np.append(v_row, th_row[i])
+						v_column = np.append(v_column, th_col[i])	
+						i += check_width - 5
+        
+				if end_flag:
+					break
+				i += 1
     		#stop=time.time()-start
-    		#print(stop)
-    		return v_row, v_column
+			#print(stop)
+			return v_row, v_column
 
 
-		def glare_noise(p_row,v_row):
-    		#start=time.time()
-    		p_avg=np.mean(p_row)
-    		noisepos_peak=list()
-    		for i in range(0,len(p_row)):
-        		if(p_row[i]> p_avg+60 or p_row[i]< p_avg-60):
-            		noisepos_peak.append(i)
+	def glare_noise(p_row,v_row):
+			#start=time.time()
+			p_avg=np.mean(p_row)
+			noisepos_peak=list()
+			for i in range(0,len(p_row)):
+				if(p_row[i]> p_avg+60 or p_row[i]< p_avg-60):
+					noisepos_peak.append(i)
                 
-    		peak=np.array(np.delete(p_row,noisepos_peak),np.int16)
+			peak=np.array(np.delete(p_row,noisepos_peak),np.int16)
     
-    		v_avg=np.mean(v_row)
-    		noisepos_valley=list()
-    		for i in range(0,len(valley_row)):
-        		if(v_row[i]> v_avg+60 or v_row[i]< v_avg-60):
-            		noisepos_valley.append(i)
+			v_avg=np.mean(v_row)
+			noisepos_valley=list()
+			for i in range(0,len(valley_row)):
+				if(v_row[i]> v_avg+60 or v_row[i]< v_avg-60):
+					noisepos_valley.append(i)
     
-    		valley=np.array(np.delete(v_row,noisepos_valley),np.int16)
+				valley=np.array(np.delete(v_row,noisepos_valley),np.int16)
     
     
-    		#stop=time.time()-start
-    		#print(stop)
+			#stop=time.time()-start
+			#print(stop)
     
-    		return peak,valley
+			return peak,valley
 
-
-		def show_peak_valley(img, v_row, v_column, p_row, p_column):
+	def show_peak_valley(img, v_row, v_column, p_row, p_column):
     		#cv2.circle(img, (250, 250), 50, (100, 50, 200), -1)
-    		for i in range(v_row.shape[0]):
-        		cv2.circle(img, (int(v_column[i]), int(v_row[i])), 1, (0, 255, 0), -1)
+			for i in range(v_row.shape[0]):
+				cv2.circle(img, (int(v_column[i]), int(v_row[i])), 1, (0, 255, 0), -1)
 
-		    for i in range(p_row.shape[0]):
-        		cv2.circle(img, (int(p_column[i]), int(p_row[i])), 1, (255, 0, 0), -1)
+			for i in range(p_row.shape[0]):
+				cv2.circle(img, (int(p_column[i]), int(p_row[i])), 1, (255, 0, 0), -1)
 
-		    cv2.imshow("valleysssss", img)
+			cv2.imshow("valleysssss", img)
 
-		def image_read(img):
+	def image_read(img):
 
 			#start=time.time()
 			image = cv2.imread(img)
@@ -183,7 +179,7 @@ class Bolt:
 			#print(binaryImage.shape[1])
 			return redChannel,binaryImg
 
-		def thread_row_column(binaryImg):
+	def thread_row_column(binaryImg):
 			rownonzero_pos,colnonzero_pos=binaryImg.nonzero()
 			width = max(colnonzero_pos)
 			height = max(rownonzero_pos)
@@ -211,7 +207,7 @@ class Bolt:
 
 			return thread_row,thread_col
 
-		def find_peak_valley(thread_row,thread_col,img,binaryImage):
+	def find_peak_valley(thread_row,thread_col,img,binaryImage):
 			valley_row, valley_column = find_valley(thread_row, thread_col)
 
 			peak_row, peak_column = find_peak(thread_row, thread_col)
@@ -248,21 +244,20 @@ class Bolt:
 			cv2.destroyAllWindows()
 		
 
-
-		def rotate_capture():
-    		delay_rotate = 5/1000.0
-    		for i in range(0, 25):
-        		fourStepForward(delay_rotate)
-        		print(i)
-        		setStep(0, 0, 0, 0)
-        		time.sleep(0.2)
-        		GPIO.output(laser_pin, True)
-        		time.sleep(0.2)
-        		camera.capture('znap' + str(i) + '.jpg')
-        		process_image('znap'+str(i)+'.jpg')
-        		GPIO.output(laser_pin, False)
+	def rotate_capture():
+			delay_rotate = 5/1000.0
+			for i in range(0, 25):
+				fourStepForward(delay_rotate)
+				print(i)
+				setStep(0, 0, 0, 0)
+				time.sleep(0.2)
+				GPIO.output(laser_pin, True)
+				time.sleep(0.2)
+				camera.capture('znap' + str(i) + '.jpg')
+				process_image('znap'+str(i)+'.jpg')
+				GPIO.output(laser_pin, False)
         		#time.sleep(1)
-        		time.sleep(0.2)
+				time.sleep(0.2)
         
 
 
@@ -271,7 +266,7 @@ class Bolt:
 
 
 
-        def process_image(img):
+	def process_image(img):
 			image,binary_image=image_read(img)
 			thread_rows,thread_columns=thread_row_column(binary_image)
 			find_peak_valley(thread_rows,thread_columns,image,binary_image)
