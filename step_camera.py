@@ -3,35 +3,34 @@ import numpy as np
 import RPi.GPIO as GPIO
 import time
 
+GPIO.setmode(GPIO.BCM)
+enable_pin=18
+coil_A_1_pin =4
+coil_A_2_pin =17
+coil_B_1_pin =23
+coil_B_2_pin =24
+laser_pin =3
+ 
+GPIO.setup(enable_pin, GPIO.OUT)
+GPIO.setup(coil_A_1_pin, GPIO.OUT)
+GPIO.setup(coil_A_2_pin, GPIO.OUT)
+GPIO.setup(coil_B_1_pin, GPIO.OUT)
+GPIO.setup(coil_B_2_pin, GPIO.OUT)
+GPIO.setup(laser_pin, GPIO.OUT)
+
+camera = picamera.PiCamera()
+time.sleep(1)
+
+GPIO.output(enable_pin, 1)
 
 
 
 class Bolt:
 	def __init__(self,bolt_name):
 	 	self.bolt_name=name 
-	 	self.bolt_run()
+	 	self.rotate_capture()
 
 
-	def bolt_run():
-		GPIO.setmode(GPIO.BCM)
-		enable_pin=18
-		coil_A_1_pin =4
-		coil_A_2_pin =17
-		coil_B_1_pin =23
-		coil_B_2_pin =24
-		laser_pin =3
- 
-		GPIO.setup(enable_pin, GPIO.OUT)
-		GPIO.setup(coil_A_1_pin, GPIO.OUT)
-		GPIO.setup(coil_A_2_pin, GPIO.OUT)
-		GPIO.setup(coil_B_1_pin, GPIO.OUT)
-		GPIO.setup(coil_B_2_pin, GPIO.OUT)
-		GPIO.setup(laser_pin, GPIO.OUT)
-
-		camera = picamera.PiCamera()
-		time.sleep(1)
-
-		GPIO.output(enable_pin, 1)
   
 	def setStep(w1, w2, w3, w4):
     		GPIO.output(coil_A_1_pin, w1)
@@ -277,8 +276,7 @@ class Bolt:
 	#while True:
     	#setStep(0, 0, 0, 0)
     	#rotate()
-	setStep(0, 0, 0, 0)
-	rotate_capture()
+setStep(0, 0, 0, 0)
 
 Bolt('hello')
 
