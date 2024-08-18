@@ -4,175 +4,261 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dimensional Accuracy Assertion</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+      }
+      header {
+        background: #333;
+        color: #fff;
+        padding: 10px 0;
+        text-align: center;
+      }
+      .container {
+        width: 80%;
+        margin: auto;
+        overflow: hidden;
+        padding: 20px;
+        background: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+      }
+      h1,
+      h2 {
+        color: #333;
+      }
+      h1 {
+        font-size: 2.5em;
+      }
+      h2 {
+        margin-top: 40px;
+        font-size: 2em;
+      }
+      p,
+      ul {
+        font-size: 1.1em;
+      }
+      ul {
+        list-style-type: square;
+        margin-left: 20px;
+      }
+      img {
+        display: block;
+        margin: 20px auto;
+        max-width: 100%;
+        height: auto;
+      }
+      footer {
+        text-align: center;
+        padding: 10px;
+        background: #333;
+        color: #fff;
+        margin-top: 40px;
+      }
+    </style>
   </head>
   <body>
-    <h1>Dimensional Accuracy Assertion</h1>
+    <header>
+      <h1>Dimensional Accuracy Assertion</h1>
+    </header>
 
-    <p>
-      This is our final year engineering project done using Raspberry Pi 3, a
-      camera module, line laser, and a stepper motor.
-    </p>
+    <div class="container">
+      <p>
+        This is our final year engineering project developed using a Raspberry
+        Pi 3, camera module, line laser, and stepper motor.
+      </p>
 
-    <p>
-      The project can calculate the dimensions of a nut and bolt using laser
-      triangulation technique. For bolts, it calculates thread pitch, thread
-      height, length, and major diameter. For nuts, it calculates thread pitch
-      and diameter.
-    </p>
+      <p>
+        The project calculates the dimensions of nuts and bolts using a laser
+        triangulation technique. For bolts, it measures thread pitch, thread
+        height, length, and major diameter. For nuts, it calculates thread pitch
+        and diameter.
+      </p>
 
-    <h2>Defect Detection Using Machine Vision</h2>
+      <h2>Defect Detection Using Machine Vision</h2>
 
-    <h3>Synopsis</h3>
+      <h3>Synopsis</h3>
 
-    <h4>Introduction</h4>
-    <p>
-      Quality checking is essential in the production of any product. In
-      manufacturing, quality control ensures that customers receive defect-free
-      products that meet their needs. Our aim is to create a low-cost and
-      efficient prototype system that detects defects in an object using image
-      processing techniques and estimates the size of such defects.
-    </p>
+      <h4>Introduction</h4>
+      <p>
+        Quality checking is essential in the production of any product. In
+        manufacturing, quality control ensures that customers receive
+        defect-free products that meet their needs. Our aim is to create a
+        low-cost and efficient prototype system that detects defects in an
+        object using image processing techniques and estimates the size of such
+        defects.
+      </p>
 
-    <h4>Motivation</h4>
-    <p>
-      Defects in manufacturing, such as dimensional inaccuracies, can occur
-      during production. Traditional methods to detect these defects are often
-      expensive and slow. Our goal is to develop a cost-effective and efficient
-      method to detect these defects early in the manufacturing process.
-    </p>
+      <h4>Motivation</h4>
+      <p>
+        Defects in manufacturing, such as dimensional inaccuracies, can occur
+        during production. Traditional methods to detect these defects are often
+        expensive and slow. Our goal is to develop a cost-effective and
+        efficient method to detect these defects early in the manufacturing
+        process.
+      </p>
 
-    <h4>Problem Statement</h4>
-    <p>
-      We aim to develop an automated system that detects and labels dimensional
-      defects in objects. The system must be accurate, cost-effective, and easy
-      to operate, making it suitable for deployment in production lines.
-    </p>
+      <h4>Problem Statement</h4>
+      <p>
+        We aim to develop an automated system that detects and labels
+        dimensional defects in objects. The system must be accurate,
+        cost-effective, and easy to operate, making it suitable for deployment
+        in production lines.
+      </p>
 
-    <h4>Objective</h4>
-    <p>
-      We present a real-time, highly automated tool for defect detection using
-      image processing. The system will perform real-time image acquisition,
-      processing, and classification, allowing for the detection and
-      classification of common dimensional defects in manufactured products.
-    </p>
+      <h4>Objective</h4>
+      <p>
+        We present a real-time, highly automated tool for defect detection using
+        image processing. The system will perform real-time image acquisition,
+        processing, and classification, allowing for the detection and
+        classification of common dimensional defects in manufactured products.
+      </p>
 
-    <h4>Block Diagram</h4>
-    <img
-      src="https://github.com/rahulmranga/Dimensional-Accuracy-Assertion/blob/master/reports/bd.JPG"
-      alt="Basic Block Diagram"
-    />
+      <h4>Block Diagram</h4>
+      <img src="bd.JPG" alt="Basic Block Diagram" />
 
-    <h4>Project Outcome</h4>
-    <p>
-      The system will take pictures of an object in three dimensions, process
-      the images, compare them with reference images, detect defects, and
-      suggest methods for resolving any flaws.
-    </p>
+      <h4>Project Outcome</h4>
+      <p>
+        The system will take pictures of an object in three dimensions, process
+        the images, compare them with reference images, detect defects, and
+        suggest methods for resolving any flaws.
+      </p>
 
-    <h4>Applications</h4>
-    <ul>
-      <li>Detect defects in manufacturing industries for quality control.</li>
-      <li>Detect faulty goods in early production stages to reduce wastage.</li>
-      <li>Check for defects in 3D printing and CNC machining.</li>
-      <li>Measure dimensions of unknown objects.</li>
-    </ul>
+      <h4>Applications</h4>
+      <ul>
+        <li>Detect defects in manufacturing industries for quality control.</li>
+        <li>
+          Detect faulty goods in early production stages to reduce wastage.
+        </li>
+        <li>Check for defects in 3D printing and CNC machining.</li>
+        <li>Measure dimensions of unknown objects.</li>
+      </ul>
 
-    <h2>Literature Survey</h2>
-    <p>
-      Machine vision (MV) is used in automatic inspection, process control, and
-      robot guidance. The technology provides computer-understandable
-      descriptions of objects from images. Automated visual inspection systems
-      must discover and classify defects in product images quickly and robustly.
-      Our project builds upon existing methods by focusing on 3D object
-      inspection, where traditional 2D methods fall short.
-    </p>
+      <h2>Literature Survey</h2>
+      <p>
+        Machine vision (MV) is used in automatic inspection, process control,
+        and robot guidance. The technology provides computer-understandable
+        descriptions of objects from images. Automated visual inspection systems
+        must discover and classify defects in product images quickly and
+        robustly. Our project builds upon existing methods by focusing on 3D
+        object inspection, where traditional 2D methods fall short.
+      </p>
 
-    <h2>Mathematical Analysis</h2>
-    <img
-      src="https://github.com/rahulmranga/Dimensional-Accuracy-Assertion/blob/master/reports/lasercamera.JPG"
-      alt="Simple triangulation setup with Line LASER"
-    />
-    <p>
-      We use a simple 3D triangulation setup with a line LASER and a camera to
-      scan objects for defects. The LASER line intersects the view direction of
-      the camera at the axis of rotation of the object, allowing us to extract
-      depth-related information.
-    </p>
+      <h2>Mathematical Analysis</h2>
+      <img
+        src="lasercamera.JPG"
+        alt="Simple triangulation setup with Line LASER"
+      />
+      <p>
+        We use a simple 3D triangulation setup with a line LASER and a camera to
+        scan objects for defects. The LASER line intersects the view direction
+        of the camera at the axis of rotation of the object, allowing us to
+        extract depth-related information.
+      </p>
 
-    <img
-      src="https://github.com/rahulmranga/Dimensional-Accuracy-Assertion/blob/master/reports/triangle.JPG"
-      alt="Top view of triangulation setup"
-    />
-    <img
-      src="https://github.com/rahulmranga/Dimensional-Accuracy-Assertion/blob/master/reports/yline.JPG"
-      alt="View from the camera"
-    />
+      <img src="triangle.JPG" alt="Top view of triangulation setup" />
+      <img src="yline.JPG" alt="View from the camera" />
 
-    <p>
-      Using known angles and scaling factors, we can calculate the depth and
-      dimensions of the object. Images of the object are processed to detect
-      deviations from reference images, identifying defects.
-    </p>
+      <p>
+        Using known angles and scaling factors, we can calculate the depth and
+        dimensions of the object. Images of the object are processed to detect
+        deviations from reference images, identifying defects.
+      </p>
 
-    <h2>Software Requirements</h2>
-    <ul>
-      <li>
-        <strong>OpenCV:</strong> A library for real-time computer vision,
-        optimized for computational efficiency.
-      </li>
-      <li>
-        <strong>Arduino IDE:</strong> A cross-platform application used to write
-        and upload programs to Arduino boards.
-      </li>
-      <li>
-        <strong>Python:</strong> A high-level programming language known for its
-        readability and efficiency.
-      </li>
-    </ul>
+      <h2>Software Requirements</h2>
+      <ul>
+        <li>
+          <strong>OpenCV:</strong> A library for real-time computer vision,
+          optimized for computational efficiency.
+        </li>
+        <li>
+          <strong>Arduino IDE:</strong> A cross-platform application used to
+          write and upload programs to Arduino boards.
+        </li>
+        <li>
+          <strong>Python:</strong> A high-level programming language known for
+          its readability and efficiency.
+        </li>
+      </ul>
 
-    <h2>Hardware Requirements</h2>
-    <ul>
-      <li>
-        <strong>Arduino Uno:</strong> A microcontroller board used to manage
-        inputs and outputs.
-      </li>
-      <li>
-        <strong>Raspberry Pi:</strong> A single-board computer used to run the
-        project’s software and manage peripherals.
-      </li>
-      <li>
-        <strong>Camera Module:</strong> A camera used to capture images of the
-        object for analysis.
-      </li>
-    </ul>
+      <h2>Hardware Requirements</h2>
+      <ul>
+        <li>
+          <strong>Arduino Uno:</strong> A microcontroller board used to manage
+          inputs and outputs.
+        </li>
+        <li>
+          <strong>Raspberry Pi:</strong> A single-board computer used to run the
+          project’s software and manage peripherals.
+        </li>
+        <li>
+          <strong>Camera Module:</strong> A camera used to capture images of the
+          object for analysis.
+        </li>
+      </ul>
 
-    <h2>References</h2>
-    <ol>
-      <li>
-        Consumer Reports. (July 14, 2017).
-        <em>Takata Airbag Recall - Everything You Need to Know</em>, retrieved
-        on September 20, 2017.
-        <a
-          href="https://www.consumerreports.org/cro/news/2016/05/everything-you-need-to-know-about-the-takata-air-bag-recall/index.htm"
-          >URL</a
-        >
-      </li>
-      <li>
-        Suhasini A., Sonal D. Kalro, Prathiksha B. G., Meghashree B. S.,
-        Phaneendra H. D.,
-        <em>PCB Defect Detection Using Image Subtraction Algorithm</em>,
-        International Journal of Computer Science Trends and Technology (IJCST)
-        – Volume 3 Issue 3, May-June 2015.
-      </li>
-      <li>
-        R. Heriansyah and S. A. R. Abu-Bakar(2004),
-        <em
-          >Defects classification on bare PCB using multiple learning vector
-          quantization neural network paradigm</em
-        >, International Conference on Computer Graphics, Imaging, and
-        Visualization 2004 (CGIV 2004), pp.50-53.
-      </li>
-      <li>Romulo Gonçalves Lins, Sidney N. Givigi, <em>Automatic </em></li>
-    </ol>
+      <h2>References</h2>
+      <ol>
+        <li>
+          Consumer Reports. (July 14, 2017).
+          <em>Takata Airbag Recall - Everything You Need to Know</em>, retrieved
+          on September 20, 2017.
+          <a
+            href="https://www.consumerreports.org/cro/news/2016/05/everything-you-need-to-know-about-the-takata-air-bag-recall/index.htm"
+            >URL</a
+          >
+        </li>
+        <li>
+          Suhasini A., Sonal D. Kalro, Prathiksha B. G., Meghashree B. S.,
+          Phaneendra H. D.,
+          <em>PCB Defect Detection Using Image Subtraction Algorithm</em>,
+          International Journal of Computer Science Trends and Technology
+          (IJCST) – Volume 3 Issue 3, May-June 2015.
+        </li>
+        <li>
+          R. Heriansyah and S. A. R. Abu-Bakar(2004),
+          <em
+            >Defects classification on bare PCB using multiple learning vector
+            quantization neural network paradigm</em
+          >, International Conference on Computer Graphics, Imaging, and
+          Visualization 2004 (CGIV 2004), pp.50-53.
+        </li>
+        <li>
+          Romulo Gonçalves Lins, Sidney N. Givigi,
+          <em
+            >Automatic crack detection and measurement based on image
+            analysis</em
+          >, IEEE Trans. Instrum. Meas., 65 (3) (2016), pp. 583-590.
+        </li>
+        <li>
+          Xueqin Li, Honghai Jiang, Guofu Yin,
+          <em>Detection of surface crack defects on ferrite magnetic tile</em>,
+          NDT E Int., 62 (2014), pp. 6-13.
+        </li>
+        <li>
+          Q.M. Jonathan Wu, M.F. Ricky Lee, Clarence W. de Silva,
+          <em>Intelligent 3-D Sensing in Automated Manufacturing Processes</em>,
+          IEEE, pp. 334-339, 2001.
+        </li>
+        <li>
+          Makerzone. (July 12, 2016).
+          <em>Raspberry Pi + MATLAB based 3D Scanner</em>, retrieved on
+          September 15, 2017.
+          <a
+            href="https://makerzone.mathworks.com/resources/raspberry-pi-matlab-based-3d-scanner/"
+            >URL</a
+          >
+        </li>
+      </ol>
+    </div>
+
+    <footer>
+      <p>&copy; 2024 Dimensional Accuracy Assertion Project</p>
+    </footer>
   </body>
 </html>
