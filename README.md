@@ -39,7 +39,7 @@ This work presents a new, real-time, highly automated tool for defect detection 
 
 ### Block Diagram
 
-![Basic Block Diagram](bd.jpg)
+![Basic Block Diagram](https://github.com/rahulmranga/Dimensional-Accuracy-Assertion/blob/master/reports/bd.JPG)
 
 A basic block diagram of the proposed project is given above.
 
@@ -78,7 +78,7 @@ But these systems work well for a 2-D view since we are taking an image or a set
 
 In order for an object to be scanned so that defects can be detected, a simple 3-D triangulation setup is created using a line LASER and a camera.
 
-![A simple triangulation setup consisting of a Line LASER diode projecting a line on the 3D object](lasercamera.jpg)
+![A simple triangulation setup consisting of a Line LASER diode projecting a line on the 3D object](https://github.com/rahulmranga/Dimensional-Accuracy-Assertion/blob/master/reports/lasercamera.JPG)
 
 The image above shows a very simple triangulation setup using a camera and a line LASER. The LASER diode is positioned such that it creates a triangle with the view direction of the camera. As you can see from the image, the LASER line projects on the object and intersects the view direction of the camera exactly at the axis of rotation of the object. The angle at the intersection of the LASER line and the view direction (THETA) provides us with the first tool for extracting depth-related information from the image captured by the camera.
 
@@ -91,8 +91,8 @@ where,
 - \(X_s\) is the X scaling factor
 - \(Y_s\) is the Y scaling factor
 
-![Top view of the triangulation setup](triangle.jpg)
-![View from the camera](yline.jpg)
+![Top view of the triangulation setup](https://github.com/rahulmranga/Dimensional-Accuracy-Assertion/blob/master/reports/triangle.JPG)
+![View from the camera](https://github.com/rahulmranga/Dimensional-Accuracy-Assertion/blob/master/reports/yline.JPG)
 
 Since we know the angle (THETA), we can calculate the depth of the image or the Z component as,
 $$Z=\frac{X}{\tan(\text{THETA})}$$
