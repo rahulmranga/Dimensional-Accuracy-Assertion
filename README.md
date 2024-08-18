@@ -57,61 +57,6 @@ The designed automated system will be able to take pictures of the object in all
 - It can be used in 3D printing and CNC machining to check for defects in printed materials.
 - It can be used to check the dimensions of an unknown object.
 
-## Literature Survey
-
-Machine vision (MV) is the technology and methods used to provide imaging-based automatic inspection and analysis for such applications as automatic inspection, process control, and robot guidance, usually in industry. The main task of machine vision systems is providing computer-understandable descriptions of objects from either a single image or a whole array of images. One such area of application is in automated visual product inspection. An automated visual inspection system must discover and classify possible defects from product images and should be fairly quick and robust. Such an automated system can be assembled with digital image processing at its core to detect defects in large-scale manufacturing industries.
-
-Machine vision systems usually find applications in the PCB manufacturing industry since PCBs can be approximated as a 2-D plane. Thus, only one image is sufficient to describe a PCB. A study by Suhasini A., Sonal D. Kalro, Prathiksha B. G., Meghashree B. S., and Phaneendra H. D.[^2], utilized a non-contact reference-based image processing approach for defect detection and classification and simple image processing algorithm (concerned with arithmetic and logical operation between images where pixel by pixel transformation was applied) for locating the defects on PCB boards. A template of defected test PCB images involved many stages, including grayscale image conversion, thresholding, and segmentation based on different intensities, and was compared with defect-free PCB images using image subtraction and other procedures. Discrepancies between the images were considered defects and classified based on similarities and area of occurrence.
-
-Heriansyah[^3] proposed a better technique using a referential pixel-based approach where the PCB could be formed into three groups: the defects on the foreground, on the background, and on both. The LVQ neural network had been selected to classify the defects. The designed patterns were trained and tested using the neural network. For the neural network implementation, 2 groups of defects were used for training (i.e., foreground and background). For performance comparison, a pixel-based approach was developed to classify seven defects (short, missing hole, pinhole, open, nosebite, spur, and etching problem). The stages involved were segmentation, windowing (reference image and detected defects), defects detection, pattern assignment, normalization, and classification. All these processes were offline and hence did not affect the overall processing time.
-
-Lins and Givigi[^4] developed a system based on machine vision concepts with the goal of automating the crack measurement process. In their method, they used only a single camera for the processing of the sequence of the images for the crack dimension estimation. The crack model algorithm HSB and RSV were used, by which the sequences of the images were subjected to crack detection algorithms in order to detect the crack. The proposed algorithm receives images and outputs a new image with red particles along the detected crack. The pixel positions of the particles were stored in a vector and passed along to the crack measurement algorithm. With the pixel positions, the algorithm estimates the number of pixels in a cross-section and outputs the crack dimension. Li et al.[^5] incorporated a new approach for detecting cracks in defects with dark color and low contrast using fast discrete curvelet waveform and texture analysis. They initially decomposed and reconstructed the original image using the FDCT algorithm. Then, the thresholds of the decomposition coefficients were calculated by the texture feature measurements, from which the surface textures in the images were eliminated. Finally, by extracting the contours from the reconstructed images, the expected image without texture but with crack defect contours was obtained.
-
-But these systems work well for a 2-D view since we are taking an image or a set of images. These methods fail to work for 3-D objects. M Jonathan Wu et al.[^6] designed a 3-D sensing system applying artificial intelligence methodology for quantity assurance in automatic manufacturing processes. Using a single 2-D CCD camera, laser-structured light, and fuzzy techniques for rule-based decision-making, it was possible to successfully interpret a 3-D view. The surface environment information was converted into the orientation, curvature, and depth of the shape to incorporate into symbolic 3-D object-oriented information base and reasoning algorithm.
-
-## Mathematical Analysis
-
-In order for an object to be scanned so that defects can be detected, a simple 3-D triangulation setup is created using a line LASER and a camera.
-
-![A simple triangulation setup consisting of a Line LASER diode projecting a line on the 3D object](https://github.com/rahulmranga/Dimensional-Accuracy-Assertion/blob/master/reports/lasercamera.JPG)
-
-The image above shows a very simple triangulation setup using a camera and a line LASER. The LASER diode is positioned such that it creates a triangle with the view direction of the camera. As you can see from the image, the LASER line projects on the object and intersects the view direction of the camera exactly at the axis of rotation of the object. The angle at the intersection of the LASER line and the view direction (THETA) provides us with the first tool for extracting depth-related information from the image captured by the camera.
-
-The length of X and Y can be obtained from the image itself.
-$$X=N_v * X_s$$
-$$Y=Scanline * Y_s$$
-where,
-
-- \(N_v\) is the number of pixels from the view direction
-- \(X_s\) is the X scaling factor
-- \(Y_s\) is the Y scaling factor
-
-![Top view of the triangulation setup](https://github.com/rahulmranga/Dimensional-Accuracy-Assertion/blob/master/reports/triangle.JPG)
-![View from the camera](https://github.com/rahulmranga/Dimensional-Accuracy-Assertion/blob/master/reports/yline.JPG)
-
-Since we know the angle (THETA), we can calculate the depth of the image or the Z component as,
-$$Z=\frac{X}{\tan(\text{THETA})}$$
-$$D=\frac{X}{\sin(\text{THETA})}$$
-
-Let the set of images of the object on which the LASER is incident be defined as,
-$$f_i(x,y),{\quad}0{\leq}i<N{\quad}(N \text{ is the number of images taken})$$
-
-Let the set of images of the object which does not have the LASER incident on it be defined as,
-$$g_i(x,y),{\quad}0{\leq}i<N$$
-
-Initially, the backgrounds of all the images are removed by subtracting the background image from the set of images present. If \(b(x,y)\) is an image only containing the background, then,
-$$f'_i(x,y)=f_i(x,y)-b(x,y),{\quad}\forall i\in[0,N)$$
-The images now contain only the object devoid of the background. After removing the background, it checks for any defects by comparing \(f'\_i(x,y)\) with respect to a previously stored image of a perfectly fine, LASER incident object. The comparison is done using subtraction or bit-wise XOR operation,
-$$f_i"(x,y)=f'_i(x,y)-p_i(x,y),{\quad}\forall i\in[0,N)$$
-or,
-$$f_i"(x,y)=f'_i(x,y){\wedge}p_i(x,y),{\quad}\forall i\in[0,N)$$
-where, \(p_i(x,y)\) is a set of images of an object without any defects, stored within the processor.
-
-The resultant image \(f"\_i(x,y)\) contains a contour that represents the deviation from the required value. This represents the defect present in the object. The size of the defect is later estimated by comparing all such images which do not match with \(p_i(x,y)\). If \(f"\_i(x,y)\) does not have any contours, then it can be classified as an object with no defects.
-
-Finally, the contour is superimposed on the corresponding \(g_i(x,y)\) to mark where the defect is present. Hence the set of output images is,
-$$h_i(x,y)=f_i"(x,y)\vert g_i(x,y)$$
-
 ## Software Requirements
 
 ### OpenCV
@@ -141,13 +86,3 @@ Raspberry Pi is an ARM-based credit card-sized SBC (Single Board Computer) creat
 ### Camera Module
 
 The Raspberry Pi camera module can be used to take high-definition video, as well as still photographs. The camera consists of a small (25mm by 20mm by 9mm) circuit board, which connects to the Raspberry Pi's Camera Serial Interface (CSI) bus connector via a flexible ribbon cable. The camera's image sensor has a native resolution of five megapixels and has a fixed-focus lens. The software for the camera supports full-resolution still images up to 2592x1944 and video resolutions of 1080p30, 720p60, and 640x480p60/90.
-
-## References
-
-[^1]: Consumer Reports. (July 14, 2017). _Takata Airbag Recall - Everything You Need to Know_, retrieved on September 20, 2017. [URL](https://www.consumerreports.org/cro/news/2016/05/everything-you-need-to-know-about-the-takata-air-bag-recall/index.htm)
-[^2]: Suhasini A., Sonal D. Kalro, Prathiksha B. G., Meghashree B. S., Phaneendra H. D., _PCB Defect Detection Using Image Subtraction Algorithm_, International Journal of Computer Science Trends and Technology (IJCST) – Volume 3 Issue 3, May-June 2015.
-[^3]: R. Heriansyah and S. A. R. Abu-Bakar(2004), _Defects classification on bare PCB using multiple learning vector quantization neural network paradigm_, International Conference on Computer Graphics, Imaging, and Visualization 2004 (CGIV 2004), pp.50-53.
-[^4]: Romulo Gonçalves Lins, Sidney N. Givigi, _Automatic crack detection and measurement based on image analysis_, IEEE Trans. Instrum. Meas., 65 (3) (2016), pp. 583-590.
-[^5]: Xueqin Li, Honghai Jiang, Guofu Yin, _Detection of surface crack defects on ferrite magnetic tile_, NDT E Int., 62 (2014), pp. 6-13.
-[^6]: Q.M. Jonathan Wu, M.F. Ricky Lee, Clarence W. de Silva, _Intelligent 3-D Sensing in Automated Manufacturing Processes_, IEEE, pp. 334-339, 2001.
-[^7]: Makerzone. (July 12, 2016). _Raspberry Pi + MATLAB based 3D Scanner_, retrieved on September 15, 2017. [URL](https://makerzone.mathworks.com/resources/raspberry-pi-matlab-based-3d-scanner/)
